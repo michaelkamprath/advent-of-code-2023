@@ -1,9 +1,7 @@
 use std::io;
 
-
 fn main() -> io::Result<()> {
     let mut lines = io::stdin().lines();
-
 
     let mut total: u32 = 0;
 
@@ -12,21 +10,20 @@ fn main() -> io::Result<()> {
             continue;
         }
         if let Ok((first_digit, last_digit)) = find_digits(&line) {
-            let value: u32 = first_digit*10 + last_digit;
-           println!("first digit = {:?}, last digit = {:?} ==> number = {:?}", first_digit, last_digit, value); 
-           total += value;
+            let value: u32 = first_digit * 10 + last_digit;
+            println!(
+                "first digit = {:?}, last digit = {:?} ==> number = {:?}",
+                first_digit, last_digit, value
+            );
+            total += value;
         } else {
             println!("ERROR: could not find digits in: {:?}", line);
         }
-
-        
     }
 
-    
     println!("total = {:?}", total);
     Ok(())
 }
-
 
 fn find_digits(line: &str) -> Result<(u32, u32), ()> {
     let mut first_digit: Option<char> = None;
@@ -50,9 +47,7 @@ fn find_digits(line: &str) -> Result<(u32, u32), ()> {
         } else {
             Err(())
         }
-        
     } else {
         Err(())
     }
-
 }
